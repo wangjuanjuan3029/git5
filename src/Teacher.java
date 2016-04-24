@@ -9,6 +9,7 @@ public class Teacher {
 
 	public Teacher(){
 	
+
 	}
 	public Teacher(long id,String name,String gender,int age){
 		this.id = id;

@@ -62,7 +62,30 @@ public class Tms {
 
 					break;
 				case "4":
-					
+					while(true){
+						System.out.print("请输入要修改的老师id：或输入break返回上一级目录！");
+						String idStr4 = scanner.nextLine();
+						if(idStr4.equals("break")){
+							break;
+						}
+						long id4 = Long.parseLong(idStr4);
+						int num = tms.findIndexById(id4);
+						if(num==-1){
+							System.out.println("sorry,您输入的老师不存在！");
+						}
+						Teacher tea4 = tms.findById(id4);
+						System.out.println("原来老师的信息："+tea4);
+						System.out.println("请输入修改后的信息【name#gender#age】");
+						String teaArr=scanner.nextLine();
+						String Arr[] = teaArr.split("#");
+						String name =  Arr[0];
+						String gender =  Arr[1];
+						int age = Integer.parseInt(Arr[2]);
+						Teacher newTea = new Teacher(id4,name,gender,age);
+					    tms.update(newTea);
+						System.out.println("修改成功！");
+
+					}
 					break;
 				case "5":
 					while(true){
@@ -130,8 +153,16 @@ public class Tms {
 		teas[--index]=null;
 	}
 	//修改信息
-	public void update(long id){
-	
+	public void update(Teacher tea){
+		for(int i=0;i<index;i++){
+			if(tea.getId()==teas[i].getId()){
+				teas[i].setName(tea.getName());//teas[i].setName()=tea.getName();--这样是错误
+				teas[i].setGender(tea.getGender());//teas[i].setGender()=tea.getGender();--这样是错误
+				teas[i].setAge(tea.getAge());//teas[i].setAge()=tea.getAge();--这样是错误
+
+					
+			}
+		}
 	}
 	//查询所有
 	public Teacher[] findAll(){
